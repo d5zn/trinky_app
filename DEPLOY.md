@@ -5,7 +5,9 @@
 Проект уже настроен для развертывания на Railway. Включает в себя:
 
 - ✅ Express сервер (`server.js`)
-- ✅ Маршрутизация для `/instagramboost`
+- ✅ Главная страница для `trinky.app` (`main.html`)
+- ✅ Страница Instagram Challenge (`index.html`)
+- ✅ Маршрутизация для `/` и `/instagramboost`
 - ✅ Конфигурация Railway (`railway.json`)
 - ✅ Package.json с зависимостями
 - ✅ .gitignore файл
@@ -79,17 +81,22 @@ Value: [ваш-railway-домен].railway.app
 
 ### 6. Проверка работы
 
-После завершения деплоя ваш лендинг будет доступен по адресу:
-- `https://trinky.app/instagramboost` (после настройки DNS)
-- `https://[ваш-railway-домен].railway.app/instagramboost` (временно)
+После завершения деплоя ваш сайт будет доступен по адресам:
+- `https://trinky.app/` - главная страница приложения Trinky (после настройки DNS)
+- `https://trinky.app/instagramboost` - страница Instagram Challenge (после настройки DNS)
+- `https://[ваш-railway-домен].railway.app/` - главная страница (временно)
+- `https://[ваш-railway-домен].railway.app/instagramboost` - Instagram Challenge (временно)
 
 ## Структура проекта
 
 ```
 ig_boost_landing/
-├── index.html          # Основная страница лендинга
-├── styles.css          # Стили
-├── script.js           # JavaScript с анимациями
+├── main.html           # Главная страница trinky.app
+├── main-styles.css     # Стили для главной страницы
+├── main-script.js      # JavaScript для главной страницы
+├── index.html          # Страница Instagram Challenge
+├── styles.css          # Стили для Instagram Challenge
+├── script.js           # JavaScript для Instagram Challenge
 ├── server.js           # Express сервер
 ├── package.json        # Зависимости Node.js
 ├── railway.json        # Конфигурация Railway
@@ -99,9 +106,11 @@ ig_boost_landing/
 
 ## Особенности конфигурации
 
-- **Маршрутизация**: Лендинг доступен по пути `/instagramboost`
+- **Маршрутизация**: 
+  - Главная страница доступна по пути `/`
+  - Instagram Challenge доступен по пути `/instagramboost`
 - **Статические файлы**: CSS, JS и изображения обслуживаются напрямую
-- **Healthcheck**: Railway проверяет доступность по `/instagramboost`
+- **Healthcheck**: Railway проверяет доступность по `/`
 - **Автоматический рестарт**: При сбоях сервер перезапускается
 
 ## Мониторинг и логи
