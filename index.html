@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Instagram Challenge — Минималистичный лендинг</title>
+    <meta name="description" content="Современный минималистичный лендинг Instagram Challenge с анимациями в стиле Framer и мокапами телефонов." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#">IG Challenge</a>
+      <nav class="nav">
+        <a href="#features">Преимущества</a>
+        <a href="#steps">Как участвовать</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn primary" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Присоединиться</a>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero__content">
+          <div class="eyebrow">21‑дневный челлендж</div>
+          <h1 class="headline" id="headline">Instagram Challenge</h1>
+          <p class="subhead">Прокачай профиль за 5–10 минут в день. Лёгкие задания, поддержка комьюнити и заметный рост вовлеченности.</p>
+          <div class="cta-row">
+            <a class="btn primary large" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Стартовать сейчас</a>
+            <a class="btn ghost" href="#features">Узнать больше</a>
+          </div>
+          <div class="badges">
+            <span class="badge">Бесплатно</span>
+            <span class="badge">Старт каждую неделю</span>
+            <span class="badge">Подходит новичкам</span>
+          </div>
+        </div>
+
+        <div class="hero__mockups" aria-hidden="true">
+          <div class="phone phone--left">
+            <div class="phone__frame">
+              <div class="phone__screen gradient-1">
+                <div class="screen-chip">Цели</div>
+              </div>
+              <div class="notch"></div>
+            </div>
+          </div>
+          <div class="phone phone--center">
+            <div class="phone__frame">
+              <div class="phone__screen gradient-2">
+                <div class="screen-chip">Задание дня</div>
+              </div>
+              <div class="notch"></div>
+            </div>
+          </div>
+          <div class="phone phone--right">
+            <div class="phone__frame">
+              <div class="phone__screen gradient-3">
+                <div class="screen-chip">Инсайты</div>
+              </div>
+              <div class="notch"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="section-head">
+          <h2>Почему это работает</h2>
+          <p>Стратегия маленьких шагов, поддержка и системность — без перегруза.</p>
+        </div>
+        <div class="features__grid">
+          <article class="card">
+            <div class="card__icon">🎯</div>
+            <h3>Чёткая структура</h3>
+            <p>Ежедневные микро‑задания и чек‑листы, чтобы двигаться стабильно.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">⚡️</div>
+            <h3>Быстрый прогресс</h3>
+            <p>5–10 минут в день достаточно, чтобы увидеть рост охватов.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">🤝</div>
+            <h3>Комьюнити</h3>
+            <p>Обратная связь и поддержка, чтобы сохранять мотивацию до финиша.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">📈</div>
+            <h3>Метрики</h3>
+            <p>Простые шаблоны отслеживания для сторис, рилс и постов.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="steps" id="steps">
+        <div class="section-head">
+          <h2>Как участвовать</h2>
+          <p>Три шага — и ты в деле.</p>
+        </div>
+        <ol class="steps__list">
+          <li class="step">
+            <span class="num">1</span>
+            <div class="step__content">
+              <h3>Подпишись</h3>
+              <p>Перейди в Instagram и жми «Подписаться».</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="num">2</span>
+            <div class="step__content">
+              <h3>Забери гайд</h3>
+              <p>Скачай стартовый чек‑лист и шаблоны.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="num">3</span>
+            <div class="step__content">
+              <h3>Делай задания</h3>
+              <p>Публикуй результаты с хэштегом #igchallenge.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="steps__cta">
+          <a class="btn primary large" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Присоединиться</a>
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="section-head">
+          <h2>Вопросы и ответы</h2>
+          <p>Коротко о главном.</p>
+        </div>
+        <div class="faq__list">
+          <details class="faq__item" open>
+            <summary>Это платно?</summary>
+            <p>Нет. Участие бесплатное. Доп. материалы и поддержка — опционально.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Сколько времени нужно?</summary>
+            <p>Достаточно 5–10 минут в день. Задания короткие и практичные.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Подойдёт новичкам?</summary>
+            <p>Да. Всё на простом языке, без сложных терминов и лишней теории.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__inner">
+        <div class="brand">IG Challenge</div>
+        <div class="links">
+          <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Instagram</a>
+          <a href="#">Правила</a>
+          <a href="#">Конфиденциальность</a>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> IG Challenge</div>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+  </html>
+

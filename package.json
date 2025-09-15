@@ -1,0 +1,19 @@
+{
+  "name": "ig-boost-landing",
+  "version": "1.0.0",
+  "description": "Instagram Challenge landing page",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["instagram", "landing", "challenge"],
+  "author": "",
+  "license": "MIT"
+}
