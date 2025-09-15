@@ -22,9 +22,19 @@ app.get('/instagramboost', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Разводящая страница Study
+app.get('/instagramboost/study', (req, res) => {
+  res.sendFile(path.join(__dirname, 'study.html'));
+});
+
 // Маршрут для страницы теории Creation
 app.get('/instagramboost/creation', (req, res) => {
   res.sendFile(path.join(__dirname, 'creation.html'));
+});
+
+// Маршрут для страницы Trial Reels (та же структура, другой доступ)
+app.get('/instagramboost/trial_reels', (req, res) => {
+  res.sendFile(path.join(__dirname, 'trial_reels.html'));
 });
 
 // API: проверка пользователя в Notion
@@ -91,6 +101,171 @@ app.post('/api/check-user', async (req, res) => {
   }
 });
 
+// API: проверка пользователя в Notion для trial (требуется current_day >= 3)
+app.post('/api/check-user-trial', async (req, res) => {
+  try {
+    const usernameRaw = (req.body && req.body.username) || '';
+    const normalize = (s) => String(s).trim().replace(/^@+/, '').replace(/\s+/g, '').toLowerCase();
+    const username = normalize(usernameRaw);
+    if (!username || username.length > 64) {
+      return res.status(400).json({ ok: false, message: 'Введите ник без @' });
+    }
+
+    const notionToken = process.env.NOTION_TOKEN;
+    const usersDbId = process.env.NOTION_USERS_DB_ID || process.env.NOTION_USERS_DB;
+
+    if (!notionToken || !usersDbId) {
+      return res.status(500).json({ ok: false, message: 'Конфигурация сервера не настроена' });
+    }
+
+    const { Client } = require('@notionhq/client');
+    const notion = new Client({ auth: notionToken });
+
+    // Узкий точный фильтр с current_day >= 3
+    const exact = await notion.databases.query({
+      database_id: usersDbId,
+      filter: {
+        and: [
+          { property: 'instagram', rich_text: { equals: username } },
+          { property: 'current_day', number: { greater_than_or_equal_to: 3 } }
+        ]
+      },
+      page_size: 1
+    });
+    if (Array.isArray(exact.results) && exact.results.length) {
+      return res.json({ ok: true });
+    }
+
+    // Широкий поиск и ручная нормализация
+    const wide = await notion.databases.query({
+      database_id: usersDbId,
+      filter: { property: 'current_day', number: { greater_than_or_equal_to: 3 } },
+      page_size: 10,
+      sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }]
+    });
+
+    const getInstagramValue = (page) => {
+      const prop = page.properties && page.properties.instagram;
+      if (!prop) return '';
+      if (prop.type === 'title' || prop.type === 'rich_text') {
+        const arr = prop[prop.type] || [];
+        return normalize(arr.map((t) => t.plain_text || '').join(''));
+      }
+      if (prop.type === 'url' && prop.url) return normalize(prop.url);
+      if (prop.type === 'people' && Array.isArray(prop.people) && prop.people[0]?.name) return normalize(prop.people[0].name);
+      return '';
+    };
+
+    const matched = (wide.results || []).some((p) => getInstagramValue(p) === username);
+    return res.json({ ok: matched, message: matched ? undefined : 'Доступ к разделу открыт с 3-го дня' });
+  } catch (e) {
+    console.error('check-user-trial error', e);
+    return res.status(500).json({ ok: false, message: 'Ошибка сервера' });
+  }
+});
+
+// API: проверка на произвольный минимальный день current_day >= minDay
+app.post('/api/check-user-min', async (req, res) => {
+  try {
+    const usernameRaw = (req.body && req.body.username) || '';
+    const minDayRaw = req.body && req.body.minDay;
+    const normalize = (s) => String(s).trim().replace(/^@+/, '').replace(/\s+/g, '').toLowerCase();
+    const username = normalize(usernameRaw);
+    const minDay = Number(minDayRaw);
+    if (!username || username.length > 64) {
+      return res.status(400).json({ ok: false, message: 'Введите ник без @' });
+    }
+    if (!Number.isFinite(minDay) || minDay < 0) {
+      return res.status(400).json({ ok: false, message: 'Некорректный параметр minDay' });
+    }
+
+    const notionToken = process.env.NOTION_TOKEN;
+    const usersDbId = process.env.NOTION_USERS_DB_ID || process.env.NOTION_USERS_DB;
+    if (!notionToken || !usersDbId) {
+      return res.status(500).json({ ok: false, message: 'Конфигурация сервера не настроена' });
+    }
+
+    const { Client } = require('@notionhq/client');
+    const notion = new Client({ auth: notionToken });
+
+    const exact = await notion.databases.query({
+      database_id: usersDbId,
+      filter: {
+        and: [
+          { property: 'instagram', rich_text: { equals: username } },
+          { property: 'current_day', number: { greater_than_or_equal_to: minDay } }
+        ]
+      },
+      page_size: 1
+    });
+    if (Array.isArray(exact.results) && exact.results.length) {
+      return res.json({ ok: true });
+    }
+
+    const wide = await notion.databases.query({
+      database_id: usersDbId,
+      filter: { property: 'current_day', number: { greater_than_or_equal_to: minDay } },
+      page_size: 10,
+      sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }]
+    });
+
+    const getInstagramValue = (page) => {
+      const prop = page.properties && page.properties.instagram;
+      if (!prop) return '';
+      if (prop.type === 'title' || prop.type === 'rich_text') {
+        const arr = prop[prop.type] || [];
+        return normalize(arr.map((t) => t.plain_text || '').join(''));
+      }
+      if (prop.type === 'url' && prop.url) return normalize(prop.url);
+      if (prop.type === 'people' && Array.isArray(prop.people) && prop.people[0]?.name) return normalize(prop.people[0].name);
+      return '';
+    };
+
+    const matched = (wide.results || []).some((p) => getInstagramValue(p) === username);
+    return res.json({ ok: matched });
+  } catch (e) {
+    console.error('check-user-min error', e);
+    return res.status(500).json({ ok: false, message: 'Ошибка сервера' });
+  }
+});
+
+// API: получить текущий день пользователя current_day
+app.post('/api/get-current-day', async (req, res) => {
+  try {
+    const usernameRaw = (req.body && req.body.username) || '';
+    const normalize = (s) => String(s).trim().replace(/^@+/, '').replace(/\s+/g, '').toLowerCase();
+    const username = normalize(usernameRaw);
+    if (!username || username.length > 64) {
+      return res.status(400).json({ ok: false, message: 'Введите ник без @' });
+    }
+
+    const notionToken = process.env.NOTION_TOKEN;
+    const usersDbId = process.env.NOTION_USERS_DB_ID || process.env.NOTION_USERS_DB;
+    if (!notionToken || !usersDbId) {
+      return res.status(500).json({ ok: false, message: 'Конфигурация сервера не настроена' });
+    }
+
+    const { Client } = require('@notionhq/client');
+    const notion = new Client({ auth: notionToken });
+
+    const resp = await notion.databases.query({
+      database_id: usersDbId,
+      filter: { property: 'instagram', rich_text: { equals: username } },
+      page_size: 1
+    });
+    const page = Array.isArray(resp.results) && resp.results[0];
+    if (!page) return res.json({ ok: false, message: 'Пользователь не найден' });
+
+    const prop = page.properties && page.properties.current_day;
+    let currentDay = 0;
+    if (prop && prop.type === 'number' && typeof prop.number === 'number') currentDay = prop.number;
+    return res.json({ ok: true, current_day: currentDay });
+  } catch (e) {
+    console.error('get-current-day error', e);
+    return res.status(500).json({ ok: false, message: 'Ошибка сервера' });
+  }
+});
+
 // Обработка всех остальных маршрутов - возвращаем 404
 app.get('*', (req, res) => {
   res.status(404).send('Page not found');
@@ -101,4 +276,6 @@ app.listen(PORT, () => {
   console.log(`Main site available at: http://localhost:${PORT}/main`);
   console.log(`Instagram Challenge available at: http://localhost:${PORT}/instagramboost`);
   console.log(`Creation theory available at: http://localhost:${PORT}/instagramboost/creation`);
+  console.log(`Trial Reels available at: http://localhost:${PORT}/instagramboost/trial_reels`);
+  console.log(`Study hub available at: http://localhost:${PORT}/instagramboost/study`);
 });

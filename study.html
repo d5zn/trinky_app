@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Study — темы | Instagram Challenge</title>
+    <meta name="description" content="Разделы теории. Доступ к каждому разделу зависит от вашего текущего дня участия." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/creation.css" />
+    <style>
+      .topics { display: grid; gap: 12px; margin-top: 12px; }
+      .topic { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+      .topic h3 { margin: 0; font-size: 18px; }
+      .topic .meta { color: var(--muted); font-size: 13px; }
+      .topic.locked { opacity: .6; }
+      .topic a { text-decoration: none; color: var(--text); }
+      .badge-open { color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+      .badge-locked { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="gate" id="gate">
+        <h1 class="title">Study</h1>
+        <p class="muted">Войдите по Instagram нику, чтобы увидеть, какие разделы уже доступны.</p>
+        <form id="gateForm" class="gate-form">
+          <div class="input-wrap">
+            <label for="username">Instagram ник</label>
+            <input id="username" name="username" type="text" inputmode="latin" placeholder="yourname" autocomplete="username" required />
+            <div class="help">Только латиница, без пробелов и без @</div>
+          </div>
+          <button class="btn" type="submit">Войти</button>
+          <p class="error" id="error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="content" id="content" hidden>
+        <header class="sticky-head">
+          <h2>Темы обучения</h2>
+          <div class="back" id="logout">Выйти</div>
+        </header>
+        <article class="theory">
+          <div class="topics" id="topics"></div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/study.js"></script>
+  </body>
+  </html>
+
+

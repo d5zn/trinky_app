@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Trial Reels | Instagram Challenge</title>
+    <meta name="description" content="Пробный раздел с материалами по Reels. Доступ с 3-го дня участия." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Используем те же стили, что и у страницы Creation -->
+    <link rel="stylesheet" href="/creation.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="gate" id="gate">
+        <h1 class="title">Trial Reels</h1>
+        <p class="muted">Войти можно по Instagram нику (без @). Доступ открыт с 3‑го дня участия.</p>
+        <form id="gateForm" class="gate-form">
+          <div class="input-wrap">
+            <label for="username">Instagram ник</label>
+            <input id="username" name="username" type="text" inputmode="latin" placeholder="yourname" autocomplete="username" required />
+            <div class="help">Только латиница, без пробелов и без @</div>
+          </div>
+          <button class="btn" type="submit">Войти</button>
+          <p class="error" id="error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="content" id="content" hidden>
+        <header class="sticky-head">
+          <h2>Trial Reels</h2>
+          <div class="back" id="logout">Выйти</div>
+        </header>
+        <article class="theory">
+          <h2>Материалы доступны с 3‑го дня</h2>
+          <p>Этот раздел открывается участникам, которые дошли минимум до 3‑го дня челленджа. Здесь будут практики и советы по Reels для быстрого разгона охватов.</p>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/trial_reels.js"></script>
+  </body>
+  </html>
+
+
