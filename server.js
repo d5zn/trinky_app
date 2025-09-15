@@ -9,9 +9,12 @@ app.use(express.json());
 // Middleware для обслуживания статических файлов
 app.use(express.static(path.join(__dirname)));
 
-// Маршрут для главной страницы trinky.app
-app.get('/', (req, res) => {
+// Главная страница теперь доступна по /main, а корень редиректит
+app.get('/main', (req, res) => {
   res.sendFile(path.join(__dirname, 'main.html'));
+});
+app.get('/', (req, res) => {
+  res.redirect(302, '/main');
 });
 
 // Маршрут для Instagram Challenge
@@ -95,7 +98,7 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Main site available at: http://localhost:${PORT}/`);
+  console.log(`Main site available at: http://localhost:${PORT}/main`);
   console.log(`Instagram Challenge available at: http://localhost:${PORT}/instagramboost`);
   console.log(`Creation theory available at: http://localhost:${PORT}/instagramboost/creation`);
 });
