@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const topicsEl = document.getElementById('topics');
 
   const TOPICS = [
-    { slug: 'creation', title: 'Создание контента', href: '/instagramboost/creation', minDay: 1 },
-    { slug: 'trial_reels', title: 'Тестовые рилсы', href: '/instagramboost/trial_reels', minDay: 4 },
-    { slug: 'engagement', title: 'Вовлечённость', href: '/instagramboost/engagement', minDay: 7 },
-    { slug: 'reach', title: 'Охват', href: '/instagramboost/reach', minDay: 14 },
-    { slug: 'monetization_ads', title: 'Монетизация и реклама', href: '/instagramboost/monetization_ads', minDay: 21 },
-    { slug: 'guidelines', title: 'Где искать знания', href: '/instagramboost/guidelines', minDay: 28 },
+    { slug: 'creation', title: 'Создание контента', href: '/study/creation', minDay: 1 },
+    { slug: 'trial_reels', title: 'Тестовые рилсы', href: '/study/trial_reels', minDay: 4 },
+    { slug: 'engagement', title: 'Вовлечённость', href: '/study/engagement', minDay: 7 },
+    { slug: 'reach', title: 'Охват', href: '/study/reach', minDay: 14 },
+    { slug: 'monetization_ads', title: 'Монетизация и реклама', href: '/study/monetization_ads', minDay: 21 },
+    { slug: 'guidelines', title: 'Где искать знания', href: '/study/guidelines', minDay: 28 },
   ];
 
   function sanitize(value) {

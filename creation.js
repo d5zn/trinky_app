@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('trinky_user', username);
       inputEl.classList.remove('input-invalid');
       if (redirectToStudy) {
-        const target = `/instagramboost/study?username=${encodeURIComponent(username)}`;
+        const target = `/study?username=${encodeURIComponent(username)}`;
         window.location.assign(target);
       } else {
         showContent();
