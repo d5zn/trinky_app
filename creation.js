@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gateEl = document.getElementById('gate');
   const contentEl = document.getElementById('content');
   const logoutEl = document.getElementById('logout');
+  const backEl = document.getElementById('back');
   const inputEl = document.getElementById('username');
   const submitBtn = form?.querySelector('button');
 
@@ -111,6 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
   logoutEl?.addEventListener('click', () => {
     localStorage.removeItem('trinky_user');
     showGate('');
+  });
+  backEl?.addEventListener('click', () => {
+    const username = localStorage.getItem('trinky_user') || '';
+    const target = `/study${username ? `?username=${encodeURIComponent(username)}` : ''}`;
+    window.location.assign(target);
   });
 
   // Prefill from query ?username=
