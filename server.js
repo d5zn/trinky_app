@@ -28,9 +28,10 @@ app.get('/instagramboost/creation', (req, res) => {
 app.post('/api/check-user', async (req, res) => {
   try {
     const usernameRaw = (req.body && req.body.username) || '';
-    const username = String(usernameRaw).trim().replace(/^@+/, '');
-    if (!username || /\s/.test(username) || username.length > 64) {
-      return res.status(400).json({ ok: false, message: 'Некорректный ник' });
+    const normalize = (s) => String(s).trim().replace(/^@+/, '').replace(/\s+/g, '').toLowerCase();
+    const username = normalize(usernameRaw);
+    if (!username || username.length > 64) {
+      return res.status(400).json({ ok: false, message: 'Введите ник без @' });
     }
 
     const notionToken = process.env.NOTION_TOKEN;
@@ -40,46 +41,46 @@ app.post('/api/check-user', async (req, res) => {
       return res.status(500).json({ ok: false, message: 'Конфигурация сервера не настроена' });
     }
 
-    // Lazy import to avoid requiring when not configured
     const { Client } = require('@notionhq/client');
     const notion = new Client({ auth: notionToken });
 
-    const query = await notion.databases.query({
+    // Сначала узкий точный фильтр
+    const exact = await notion.databases.query({
       database_id: usersDbId,
       filter: {
         and: [
-          {
-            property: 'instagram',
-            rich_text: { equals: username }
-          },
-          {
-            property: 'current_day',
-            number: { greater_than_or_equal_to: 1 }
-          }
-        ]
-      },
-      page_size: 1
-    });
-
-    const ok = Array.isArray(query.results) && query.results.length > 0;
-    if (ok) {
-      return res.json({ ok: true });
-    }
-
-    // Fallback: try case-insensitive contains
-    const fallback = await notion.databases.query({
-      database_id: usersDbId,
-      filter: {
-        and: [
-          { property: 'instagram', rich_text: { contains: username } },
+          { property: 'instagram', rich_text: { equals: username } },
           { property: 'current_day', number: { greater_than_or_equal_to: 1 } }
         ]
       },
       page_size: 1
     });
+    if (Array.isArray(exact.results) && exact.results.length) {
+      return res.json({ ok: true });
+    }
 
-    const ok2 = Array.isArray(fallback.results) && fallback.results.length > 0;
-    return res.json({ ok: ok2, message: ok2 ? undefined : 'Пользователь не найден или нет доступа' });
+    // Затем широкий поиск и ручная нормализация
+    const wide = await notion.databases.query({
+      database_id: usersDbId,
+      filter: { property: 'current_day', number: { greater_than_or_equal_to: 1 } },
+      page_size: 10,
+      sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }]
+    });
+
+    const getInstagramValue = (page) => {
+      const prop = page.properties && page.properties.instagram;
+      if (!prop) return '';
+      if (prop.type === 'title' || prop.type === 'rich_text') {
+        const arr = prop[prop.type] || [];
+        return normalize(arr.map((t) => t.plain_text || '').join(''));
+      }
+      if (prop.type === 'url' && prop.url) return normalize(prop.url);
+      if (prop.type === 'people' && Array.isArray(prop.people) && prop.people[0]?.name) return normalize(prop.people[0].name);
+      return '';
+    };
+
+    const matched = (wide.results || []).some((p) => getInstagramValue(p) === username);
+    return res.json({ ok: matched, message: matched ? undefined : 'Пользователь не найден или нет доступа' });
   } catch (e) {
     console.error('check-user error', e);
     return res.status(500).json({ ok: false, message: 'Ошибка сервера' });
