@@ -17,25 +17,31 @@ app.get('/', (req, res) => {
   res.redirect(302, '/main');
 });
 
-// Маршрут для Instagram Challenge
-app.get('/instagramboost', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// Хост-бейз роутинг для поддомена instagram-boost.trinky.app
+function isBoostHost(req) {
+  const host = (req.headers.host || '').toLowerCase();
+  return host.startsWith('instagram-boost.') || host.includes('instagram-boost.trinky.app');
+}
+
+// На поддомене: корень = лендинг челленджа, /study = кабинет
+app.get('/', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/study', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'study.html'));
+});
+app.get('/study/creation', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'creation.html'));
+});
+app.get('/study/trial_reels', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'trial_reels.html'));
 });
 
-// Разводящая страница Study
-app.get('/instagramboost/study', (req, res) => {
-  res.sendFile(path.join(__dirname, 'study.html'));
-});
-
-// Маршрут для страницы теории Creation
-app.get('/instagramboost/creation', (req, res) => {
-  res.sendFile(path.join(__dirname, 'creation.html'));
-});
-
-// Маршрут для страницы Trial Reels (та же структура, другой доступ)
-app.get('/instagramboost/trial_reels', (req, res) => {
-  res.sendFile(path.join(__dirname, 'trial_reels.html'));
-});
+// (Старые пути /instagramboost* удалены)
 
 // API: проверка пользователя в Notion
 app.post('/api/check-user', async (req, res) => {
@@ -274,8 +280,8 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Main site available at: http://localhost:${PORT}/main`);
-  console.log(`Instagram Challenge available at: http://localhost:${PORT}/instagramboost`);
-  console.log(`Creation theory available at: http://localhost:${PORT}/instagramboost/creation`);
-  console.log(`Trial Reels available at: http://localhost:${PORT}/instagramboost/trial_reels`);
-  console.log(`Study hub available at: http://localhost:${PORT}/instagramboost/study`);
+  console.log(`Boost landing at (host-bound): https://instagram-boost.trinky.app/`);
+  console.log(`Study hub at (host-bound): https://instagram-boost.trinky.app/study`);
+  console.log(`Creation at (host-bound): https://instagram-boost.trinky.app/study/creation`);
+  console.log(`Trial Reels at (host-bound): https://instagram-boost.trinky.app/study/trial_reels`);
 });
