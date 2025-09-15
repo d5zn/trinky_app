@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Creation — теория | Instagram Challenge</title>
+    <meta name="description" content="Теория для челленджа. Доступ только для участников."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./creation.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="gate" id="gate">
+        <h1 class="title">Creation — теория</h1>
+        <p class="muted">Войти можно по Instagram нику (без @). Доступ есть только у участников челленджа.</p>
+        <form id="gateForm" class="gate-form">
+          <div class="input-wrap">
+            <label for="username">Instagram ник</label>
+            <input id="username" name="username" type="text" inputmode="latin" placeholder="yourname" autocomplete="username" required />
+          </div>
+          <button class="btn" type="submit">Войти</button>
+          <p class="error" id="error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="content" id="content" hidden>
+        <header class="sticky-head">
+          <div class="back" id="logout">Выйти</div>
+          <h2>Раздел: Создание контента</h2>
+        </header>
+        <article class="theory">
+          <h3>Зачем нужен блок Creation</h3>
+          <p>
+            Creation — это практический модуль, где вы учитесь быстро генерировать идеи и создавать контент,
+            который резонирует с вашей аудиторией. Ключ — маленькие шаги каждый день.
+          </p>
+          <h4>Короткий фреймворк</h4>
+          <ol>
+            <li><strong>Цель:</strong> что человек получит за 15–30 секунд?</li>
+            <li><strong>Контекст:</strong> кому это и почему сейчас?</li>
+            <li><strong>Действие:</strong> что сделать прямо сегодня?</li>
+          </ol>
+          <h4>Шаблоны для мобильного</h4>
+          <ul>
+            <li>Hook → 1 мысль → Призыв к действию</li>
+            <li>Проблема → Ошибка → Решение</li>
+            <li>Вопрос → 3 пункта → Резюме</li>
+          </ul>
+          <p class="note">Совет: пишите пост как сообщение другу. Короче. Проще. Конкретнее.</p>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="./creation.js"></script>
+  </body>
+</html>
