@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  async function handleSubmit(username) {
+  async function handleSubmit(username, options = {}) {
+    const { redirectToStudy = false } = options;
     const msg = validateLocal(username);
     if (msg) {
       inputEl.classList.add('input-invalid');
@@ -87,9 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (result.ok) {
       localStorage.setItem('trinky_user', username);
       inputEl.classList.remove('input-invalid');
-      const target = `/instagramboost/study?username=${encodeURIComponent(username)}`;
-      window.location.assign(target);
-      return;
+      if (redirectToStudy) {
+        const target = `/instagramboost/study?username=${encodeURIComponent(username)}`;
+        window.location.assign(target);
+      } else {
+        showContent();
+      }
     } else {
       inputEl.classList.add('input-invalid');
       showGate(result.message || 'Доступ с 3-го дня участия');
@@ -100,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     errorEl.textContent = '';
     const username = sanitize(inputEl.value);
-    handleSubmit(username);
+    handleSubmit(username, { redirectToStudy: true });
   });
 
   logoutEl?.addEventListener('click', () => {
@@ -113,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (qUser) inputEl.value = qUser;
 
   const candidate = qUser || localStorage.getItem('trinky_user') || '';
-  if (candidate) handleSubmit(candidate);
+  if (candidate) handleSubmit(candidate, { redirectToStudy: false });
 });
 
 
