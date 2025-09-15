@@ -35,7 +35,8 @@ app.post('/api/check-user', async (req, res) => {
     }
 
     const notionToken = process.env.NOTION_TOKEN;
-    const usersDbId = process.env.NOTION_USERS_DB_ID;
+    // Поддерживаем оба названия переменной: NOTION_USERS_DB_ID и NOTION_USERS_DB
+    const usersDbId = process.env.NOTION_USERS_DB_ID || process.env.NOTION_USERS_DB;
 
     if (!notionToken || !usersDbId) {
       return res.status(500).json({ ok: false, message: 'Конфигурация сервера не настроена' });
