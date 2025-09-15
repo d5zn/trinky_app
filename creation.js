@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   async function checkAccess(username) {
-    const res = await fetch('/api/check-user', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username })
-    });
-    if (!res.ok) {
-      return { ok: false, message: 'Сервис недоступен. Попробуйте позже.' };
+    try {
+      const res = await fetch('/api/check-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      });
+      const text = await res.text();
+      try {
+        const data = JSON.parse(text);
+        if (!res.ok) return { ok: false, message: data.message || 'Ошибка доступа' };
+        return data;
+      } catch (_) {
+        console.error('Non-JSON response:', text);
+        return { ok: false, message: 'Неожиданный ответ сервера' };
+      }
+    } catch (e) {
+      console.error('Network error:', e);
+      return { ok: false, message: 'Сеть недоступна. Попробуйте позже.' };
     }
-    return res.json();
   }
 
   const form = document.getElementById('gateForm');
@@ -17,13 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const contentEl = document.getElementById('content');
   const logoutEl = document.getElementById('logout');
   const inputEl = document.getElementById('username');
+  const submitBtn = form?.querySelector('button');
 
   function showContent() {
     gateEl.hidden = true;
     contentEl.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function showGate(message) {
-    errorEl.textContent = message || '';
+    if (message) {
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+    }
     gateEl.hidden = false;
     contentEl.hidden = true;
   }
@@ -40,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return '';
   }
 
-  if (!form || !inputEl) return; // без формы скрипт завершает работу
+  if (!form || !inputEl) return;
 
   inputEl.addEventListener('input', () => {
     const raw = inputEl.value;
@@ -56,19 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errorEl.textContent = '';
-    const username = sanitize(inputEl.value);
+  async function handleSubmit(username) {
     const msg = validateLocal(username);
     if (msg) {
       inputEl.classList.add('input-invalid');
       errorEl.textContent = msg;
       return;
     }
-    form.querySelector('button').disabled = true;
+    submitBtn.disabled = true;
+    const oldText = submitBtn.textContent;
+    submitBtn.textContent = 'Проверяем...';
     const result = await checkAccess(username.toLowerCase());
-    form.querySelector('button').disabled = false;
+    submitBtn.textContent = oldText;
+    submitBtn.disabled = false;
+    console.log('Access result:', result);
     if (result.ok) {
       localStorage.setItem('trinky_user', username);
       inputEl.classList.remove('input-invalid');
@@ -77,6 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
       inputEl.classList.add('input-invalid');
       showGate(result.message || 'Неверный ник или нет доступа');
     }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorEl.textContent = '';
+    const username = sanitize(inputEl.value);
+    handleSubmit(username);
   });
 
   logoutEl?.addEventListener('click', () => {
@@ -94,8 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-login if stored or from query
   const candidate = qUser || localStorage.getItem('trinky_user') || '';
   if (candidate) {
-    checkAccess(candidate.toLowerCase()).then((r) => {
-      if (r.ok) showContent();
-    });
+    handleSubmit(candidate);
   }
 });
