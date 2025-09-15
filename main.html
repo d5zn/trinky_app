@@ -4,187 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Trinky — Приложение для развития лучшего себя</title>
-    <meta name="description" content="Trinky — инновационное приложение для личностного роста и развития. Создавайте лучшую версию себя каждый день." />
+    <title>Trinky — прокачай себя</title>
+    <meta name="description" content="Trinky — приложение для развития лучшего себя. В разработке." />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./main-styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="/">Trinky</a>
-      <nav class="nav">
-        <a href="#about">О приложении</a>
-        <a href="#features">Возможности</a>
-        <a href="#coming-soon">Скоро</a>
-      </nav>
-      <a class="btn primary" href="#notify" onclick="showNotify()">Уведомить о запуске</a>
-    </header>
-
-    <main>
-      <section class="hero" id="hero">
-        <div class="hero__content">
-          <div class="eyebrow">Скоро запуск</div>
-          <h1 class="headline" id="headline">Trinky</h1>
-          <p class="subhead">Приложение для прокачки лучшего себя. Развивайтесь каждый день с помощью персонализированных заданий, трекинга прогресса и поддержки сообщества.</p>
-          <div class="cta-row">
-            <a class="btn primary large" href="#notify" onclick="showNotify()">Уведомить о запуске</a>
-            <a class="btn ghost" href="#about">Узнать больше</a>
-          </div>
-          <div class="badges">
-            <span class="badge">Бесплатно</span>
-            <span class="badge">Персонализация</span>
-            <span class="span class="badge">Сообщество</span>
-          </div>
-        </div>
-
-        <div class="hero__mockups" aria-hidden="true">
-          <div class="phone phone--left">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-1">
-                <div class="screen-chip">Цели</div>
-              </div>
-              <div class="notch"></div>
-            </div>
-          </div>
-          <div class="phone phone--center">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-2">
-                <div class="screen-chip">Задания</div>
-              </div>
-              <div class="notch"></div>
-            </div>
-          </div>
-          <div class="phone phone--right">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-3">
-                <div class="screen-chip">Прогресс</div>
-              </div>
-              <div class="notch"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="about" id="about">
-        <div class="section-head">
-          <h2>О приложении</h2>
-          <p>Trinky — это ваш персональный тренер для развития лучшей версии себя.</p>
-        </div>
-        <div class="about__content">
-          <div class="about__text">
-            <p>Мы создаем приложение, которое поможет вам ставить цели, выполнять ежедневные задания и отслеживать прогресс в различных сферах жизни: здоровье, карьера, отношения, хобби и личностный рост.</p>
-            <p>Приложение находится в активной разработке. Мы работаем над созданием интуитивного интерфейса, умной системы рекомендаций и вдохновляющего сообщества единомышленников.</p>
-          </div>
-          <div class="about__features">
-            <div class="feature-item">
-              <div class="feature-icon">🎯</div>
-              <h3>Умные цели</h3>
-              <p>Ставьте и достигайте цели с помощью научно обоснованных методик</p>
-            </div>
-            <div class="feature-item">
-              <div class="feature-icon">📊</div>
-              <h3>Трекинг прогресса</h3>
-              <p>Отслеживайте свой рост с помощью детальной аналитики</p>
-            </div>
-            <div class="feature-item">
-              <div class="feature-icon">🤝</div>
-              <h3>Сообщество</h3>
-              <p>Общайтесь с единомышленниками и получайте поддержку</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="features" id="features">
-        <div class="section-head">
-          <h2>Что вас ждет</h2>
-          <p>Функции, над которыми мы работаем.</p>
-        </div>
-        <div class="features__grid">
-          <article class="card">
-            <div class="card__icon">📱</div>
-            <h3>Персонализация</h3>
-            <p>Адаптивные задания под ваши интересы, цели и темп развития.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">🧠</div>
-            <h3>Умные рекомендации</h3>
-            <p>ИИ-алгоритмы подберут оптимальные задания для вашего роста.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">📈</div>
-            <h3>Аналитика</h3>
-            <p>Подробные отчеты о прогрессе и достижениях.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">🏆</div>
-            <h3>Геймификация</h3>
-            <p>Достижения, рейтинги и награды за ваши успехи.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="coming-soon" id="coming-soon">
-        <div class="section-head">
-          <h2>Скоро запуск</h2>
-          <p>Мы работаем над созданием лучшего приложения для личностного роста.</p>
-        </div>
-        <div class="coming-soon__content">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot active"></div>
-              <div class="timeline-content">
-                <h3>Разработка</h3>
-                <p>Создание основного функционала и дизайна</p>
-                <span class="status">В процессе</span>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Тестирование</h3>
-                <p>Бета-тестирование с ограниченной группой пользователей</p>
-                <span class="status">Скоро</span>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>Запуск</h3>
-                <p>Публичный релиз для всех пользователей</p>
-                <span class="status">2024</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="notify" id="notify">
-        <div class="notify__content">
-          <h2>Будьте в курсе</h2>
-          <p>Получите уведомление о запуске приложения первыми</p>
-          <form class="notify-form" id="notifyForm">
-            <input type="email" placeholder="Ваш email" required>
-            <button type="submit" class="btn primary">Уведомить меня</button>
-          </form>
-          <p class="notify__privacy">Мы не будем спамить. Только важные обновления.</p>
-        </div>
-      </section>
+    <main class="stub-container">
+      <div class="stub-content">
+        <h1 class="stub-title">Trinky</h1>
+        <p class="stub-subtitle">Прокачай себя</p>
+        <p class="stub-description">Приложение в разработке</p>
+        <a href="/instagramboost" class="stub-link">Instagram Challenge</a>
+      </div>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer__inner">
-        <div class="brand">Trinky</div>
-        <div class="links">
-          <a href="/instagramboost">Instagram Challenge</a>
-          <a href="#">Контакты</a>
-          <a href="#">Политика конфиденциальности</a>
-        </div>
-      </div>
-      <div class="copyright">© <span id="year"></span> Trinky. Все права защищены.</div>
-    </footer>
-
-    <script type="module" src="./main-script.js"></script>
+    <script>
+      // Year in footer
+      document.addEventListener('DOMContentLoaded', function() {
+        const yearElement = document.getElementById('year');
+        if (yearElement) {
+          yearElement.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
   </body>
 </html>
