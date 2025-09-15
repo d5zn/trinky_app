@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sanitize(value) {
-    return String(value).trim().replace(/^@+/, '').replace(/\s+/g, '');
+    return String(value).trim().replace(/@+/g, '').replace(/\s+/g, '');
   }
   function validateLocal(value) {
     if (!value) return 'Введите ник без @';
@@ -87,7 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (result.ok) {
       localStorage.setItem('trinky_user', username);
       inputEl.classList.remove('input-invalid');
-      showContent();
+      const target = `/instagramboost/study?username=${encodeURIComponent(username)}`;
+      window.location.assign(target);
+      return;
     } else {
       inputEl.classList.add('input-invalid');
       showGate(result.message || 'Доступ с 3-го дня участия');

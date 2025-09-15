@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   function sanitize(value) {
-    return String(value).trim().replace(/^@+/, '').replace(/\s+/g, '');
+    return String(value).trim().replace(/@+/g, '').replace(/\s+/g, '');
   }
 
   async function getCurrentDay(username) {
