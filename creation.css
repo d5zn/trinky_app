@@ -13,6 +13,7 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color: var(--text); background: var(--bg); }
+h1, h2, h3, h4 { font-family: Poppins, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
 
 .container { max-width: 720px; margin: 0 auto; padding: 18px 16px 40px; }
 
@@ -35,9 +36,9 @@ input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px 
 .sticky-head { position: sticky; top: 0; background: var(--bg); padding: 10px 0; border-bottom: 1px solid var(--line); z-index: 1; display: flex; align-items: center; gap: 12px; justify-content: space-between; }
 .back { color: #2563eb; font-weight: 600; cursor: pointer; }
 
-.theory { line-height: 1.8; font-size: 16px; display: grid; gap: 10px; margin-top: 12px; }
-.theory h2 { margin: 32px 0 0; }
-.theory h3 { margin: 20px 0 0; font-size: 20px; }
+.theory { line-height: 1.8; font-size: 16px; display: grid; gap: 0; margin-top: 12px; }
+.theory h2 { margin: 32px 0 12px; }
+.theory h3 { margin: 20px 0 12px; font-size: 20px; }
 .theory h4 { margin: 8px 0 2px; font-size: 18px; }
 .theory ol, .theory ul { margin: 0 0 6px 18px; }
 .note { padding: 10px 12px; background: #fafafa; border: 1px solid var(--line); border-radius: var(--radius); color: #111827; }
