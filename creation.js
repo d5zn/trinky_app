@@ -15,6 +15,7 @@ const errorEl = document.getElementById('error');
 const gateEl = document.getElementById('gate');
 const contentEl = document.getElementById('content');
 const logoutEl = document.getElementById('logout');
+const inputEl = document.getElementById('username');
 
 function showContent() {
   gateEl.hidden = true;
@@ -26,23 +27,52 @@ function showGate(message) {
   contentEl.hidden = true;
 }
 
+function sanitize(value) {
+  return String(value).trim().replace(/^@+/, '').replace(/\s+/g, '');
+}
+
+function validateLocal(value) {
+  if (!value) return 'Введите ник без @';
+  if (/[@\s]/.test(value)) return 'Только латиница, без пробелов и без @';
+  if (!/^[a-zA-Z0-9._]+$/.test(value)) return 'Допустимы символы: a-z, 0-9, точка и подчёркивание';
+  if (value.length > 64) return 'Слишком длинный ник';
+  return '';
+}
+
+inputEl.addEventListener('input', () => {
+  const raw = inputEl.value;
+  const v = sanitize(raw);
+  if (v !== raw) inputEl.value = v;
+  const msg = validateLocal(v);
+  if (msg) {
+    inputEl.classList.add('input-invalid');
+    errorEl.textContent = msg;
+  } else {
+    inputEl.classList.remove('input-invalid');
+    errorEl.textContent = '';
+  }
+});
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   errorEl.textContent = '';
-  const raw = new FormData(form).get('username') || '';
-  const username = String(raw).trim().replace(/^@+/, '');
-  if (!username) {
-    errorEl.textContent = 'Введите ник без @';
+  const username = sanitize(inputEl.value);
+  const msg = validateLocal(username);
+  if (msg) {
+    inputEl.classList.add('input-invalid');
+    errorEl.textContent = msg;
     return;
   }
   form.querySelector('button').disabled = true;
-  const result = await checkAccess(username);
+  const result = await checkAccess(username.toLowerCase());
   form.querySelector('button').disabled = false;
   if (result.ok) {
     localStorage.setItem('trinky_user', username);
+    inputEl.classList.remove('input-invalid');
     showContent();
   } else {
-    showGate(result.message || 'Доступ запрещен');
+    inputEl.classList.add('input-invalid');
+    showGate(result.message || 'Неверный ник или нет доступа');
   }
 });
 
@@ -54,7 +84,7 @@ logoutEl?.addEventListener('click', () => {
 // Auto-login if stored
 const stored = localStorage.getItem('trinky_user');
 if (stored) {
-  checkAccess(stored).then((r) => {
+  checkAccess(stored.toLowerCase()).then((r) => {
     if (r.ok) showContent();
   });
 }
