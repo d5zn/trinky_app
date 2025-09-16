@@ -15,6 +15,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color: var(--text); background: var(--bg); }
 h1, h2, h3, h4 { font-family: Poppins, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
 
+/* Ссылки без подчеркивания */
+a, a:visited { text-decoration: none; color: inherit; }
+a:hover, a:focus { text-decoration: none; }
+
 .container { max-width: 720px; margin: 0 auto; padding: 18px 16px 40px; }
 
 .title { margin: 14px 0 6px; font-size: 28px; letter-spacing: -.2px; font-weight: 700; }
