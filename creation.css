@@ -42,7 +42,7 @@ input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px 
 .theory { line-height: 1.8; font-size: 16px; display: grid; gap: 0; margin-top: 12px; }
 .theory h2 { margin: 32px 0 8px; font-weight: 700; }
 .theory h3 { margin: 20px 0 8px; font-size: 20px; font-weight: 600; }
-.theory h4 { margin: 8px 0 2px; font-size: 18px; }
+.theory h4 { margin: 8px 0 2px; font-size: 18px; font-weight: 600; }
 .theory ol, .theory ul { margin: 0 0 6px 18px; }
 .note { padding: 10px 12px; background: #fafafa; border: 1px solid var(--line); border-radius: var(--radius); color: #111827; }
 
