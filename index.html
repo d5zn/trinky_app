@@ -4,11 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Instagram Challenge — Минималистичный лендинг</title>
-    <meta name="description" content="Современный минималистичный лендинг Instagram Challenge с анимациями в стиле Framer и мокапами телефонов." />
+    <title>31-дневный Instagram-челлендж — бот-проводник</title>
+    <meta name="description" content="Ежедневные задания, теория и мотивация, чтобы прокачать блог в Instagram. Выполнил задание → отправил ссылку → открыл следующий день. Собери портфолио из 31 поста за месяц." />
+    <meta property="og:title" content="31-дневный Instagram-челлендж — бот-проводник" />
+    <meta property="og:description" content="Ежедневные задания, теория и мотивация, чтобы прокачать блог в Instagram. Выполнил задание → отправил ссылку → открыл следующий день. Собери портфолио из 31 поста за месяц." />
+    <meta property="og:image" content="/assets/og.jpg" />
+    <meta property="og:locale" content="ru_RU" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -16,138 +20,220 @@
       <a class="brand" href="#">IG Challenge</a>
       <nav class="nav">
         <a href="/study">Обучение</a>
-        <a href="#features">Преимущества</a>
-        <a href="#steps">Как участвовать</a>
-        <a href="#faq">FAQ</a>
+        <a href="#how-it-works">Как это работает</a>
+        <a href="#theory">Теория и лайфхаки</a>
       </nav>
-      <a class="btn primary" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Присоединиться</a>
+      <a class="btn primary" href="https://t.me/your_bot_here" target="_blank" rel="noopener">Начать челлендж</a>
     </header>
 
     <main>
+      <!-- Hero Section -->
       <section class="hero" id="hero">
         <div class="hero__content">
-          <div class="eyebrow">21‑дневный челлендж</div>
-          <h1 class="headline" id="headline">Instagram Challenge</h1>
-          <p class="subhead">Прокачай профиль за 5–10 минут в день. Лёгкие задания, поддержка комьюнити и заметный рост вовлеченности.</p>
+          <div class="eyebrow">Instagram-челлендж на 31 день</div>
+          <h1 class="headline">Этот бот — твой проводник в 31-дневном Instagram-челлендже 🚀</h1>
+          <p class="subhead">Каждый день ты получаешь задание, теорию и вдохновение, чтобы прокачать свой блог.</p>
           <div class="cta-row">
-            <a class="btn primary large" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Стартовать сейчас</a>
-            <a class="btn ghost" href="/study">Обучение</a>
-          </div>
-          <div class="badges">
-            <span class="badge">Бесплатно</span>
-            <span class="badge">Старт каждую неделю</span>
-            <span class="badge">Подходит новичкам</span>
+            <a class="btn primary large" href="https://t.me/your_bot_here" target="_blank" rel="noopener">Начать челлендж</a>
+            <a class="btn ghost" href="#how-it-works">Как это работает</a>
           </div>
         </div>
-
-        <div class="hero__mockups" aria-hidden="true">
-          <div class="phone phone--left">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-1">
-                <div class="screen-chip">Цели</div>
+        <div class="hero__media">
+          <div class="phone-mock">
+            <div class="phone-mock__frame">
+              <div class="phone-mock__screen">
+                <div class="bot-interface">
+                  <div class="bot-message">📱 День 1: Запиши рилс о своём утреннем ритуале</div>
+                  <div class="user-message">✅ Запостил!</div>
+                  <div class="bot-message">🎉 Отлично! Разблокирован день 2</div>
+                </div>
               </div>
-              <div class="notch"></div>
-            </div>
-          </div>
-          <div class="phone phone--center">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-2">
-                <div class="screen-chip">Задание дня</div>
-              </div>
-              <div class="notch"></div>
-            </div>
-          </div>
-          <div class="phone phone--right">
-            <div class="phone__frame">
-              <div class="phone__screen gradient-3">
-                <div class="screen-chip">Инсайты</div>
-              </div>
-              <div class="notch"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="features" id="features">
-        <div class="section-head">
-          <h2>Почему это работает</h2>
-          <p>Стратегия маленьких шагов, поддержка и системность — без перегруза.</p>
+      <!-- About Section -->
+      <section class="about" id="about">
+        <div class="about__content">
+          <h2>О боте</h2>
+          <p>Хочешь регулярно выпускать контент и выйти в рекомендации? Бот поможет: 31 день дисциплины и креатива, ежедневные задания и полезная теория, поддержка, напоминания и мотивация.</p>
+          <div class="bullets">
+            <div class="bullet">
+              <div class="bullet__icon">📅</div>
+              <div class="bullet__content">
+                <h3>31 день</h3>
+                <p>Ежедневные задания + теория раз в неделю.</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="bullet__icon">⚡</div>
+              <div class="bullet__content">
+                <h3>Быстрый старт</h3>
+                <p>Идеи рилсов на каждый день — можно брать свои.</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="bullet__icon">🔔</div>
+              <div class="bullet__content">
+                <h3>Поддержка</h3>
+                <p>Напоминания, мотивация и цитаты каждый вечер.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="features__grid">
-          <article class="card">
-            <div class="card__icon">🎯</div>
-            <h3>Чёткая структура</h3>
-            <p>Ежедневные микро‑задания и чек‑листы, чтобы двигаться стабильно.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">⚡️</div>
-            <h3>Быстрый прогресс</h3>
-            <p>5–10 минут в день достаточно, чтобы увидеть рост охватов.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">🤝</div>
-            <h3>Комьюнити</h3>
-            <p>Обратная связь и поддержка, чтобы сохранять мотивацию до финиша.</p>
-          </article>
-          <article class="card">
-            <div class="card__icon">📈</div>
-            <h3>Метрики</h3>
-            <p>Простые шаблоны отслеживания для сторис, рилс и постов.</p>
-          </article>
+        <div class="about__media">
+          <div class="chat-mock">
+            <div class="chat-mock__messages">
+              <div class="message bot">День 7: Теория — Trial Reels</div>
+              <div class="message bot">Пробуй новый стиль без риска для ленты</div>
+              <div class="message user">Понял! Попробую сегодня</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="steps" id="steps">
+      <!-- How It Works Section -->
+      <section class="steps" id="how-it-works">
         <div class="section-head">
-          <h2>Как участвовать</h2>
-          <p>Три шага — и ты в деле.</p>
+          <div class="kicker">4 простых шага</div>
+          <h2>Как работает</h2>
         </div>
-        <ol class="steps__list">
-          <li class="step">
-            <span class="num">1</span>
-            <div class="step__content">
-              <h3>Подпишись</h3>
-              <p>Перейди в Instagram и жми «Подписаться».</p>
-            </div>
-          </li>
-          <li class="step">
-            <span class="num">2</span>
-            <div class="step__content">
-              <h3>Забери гайд</h3>
-              <p>Скачай стартовый чек‑лист и шаблоны.</p>
-            </div>
-          </li>
-          <li class="step">
-            <span class="num">3</span>
-            <div class="step__content">
-              <h3>Делай задания</h3>
-              <p>Публикуй результаты с хэштегом #igchallenge.</p>
-            </div>
-          </li>
-        </ol>
-        <div class="steps__cta">
-          <a class="btn primary large" href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Присоединиться</a>
+        <div class="steps__grid">
+          <div class="step">
+            <div class="step__icon">✨</div>
+            <h3>Каждый день — новая идея для рилса</h3>
+            <p>Выбирай предложенную идею или используй свою — важно выкладывать регулярно.</p>
+          </div>
+          <div class="step">
+            <div class="step__icon">📚</div>
+            <h3>Раз в 7 дней — теория и лайфхаки</h3>
+            <p>Короткие блоки с практикой от креаторов: что снимать, как монтировать, на что влияет вовлечённость.</p>
+          </div>
+          <div class="step">
+            <div class="step__icon">🔓</div>
+            <h3>Сдал задание — открыл следующий день</h3>
+            <p>Отправь боту ссылку на пост: кнопка «Запостил!» разблокирует новый день челленджа.</p>
+          </div>
+          <div class="step">
+            <div class="step__icon">❤️</div>
+            <h3>Мотивация и напоминания</h3>
+            <p>Цитаты поддержки и мягкие напоминания — чтобы сохранять ритм и не выгорать.</p>
+          </div>
+        </div>
+        <div class="steps__note">
+          <p>Один день = одно задание. Дисциплина — ключ к результату.</p>
         </div>
       </section>
 
-      <section class="faq" id="faq">
+      <!-- Benefits Section -->
+      <section class="benefits" id="benefits">
         <div class="section-head">
-          <h2>Вопросы и ответы</h2>
-          <p>Коротко о главном.</p>
+          <h2>Что ты получишь</h2>
         </div>
-        <div class="faq__list">
-          <details class="faq__item" open>
-            <summary>Это платно?</summary>
-            <p>Нет. Участие бесплатное. Доп. материалы и поддержка — опционально.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Сколько времени нужно?</summary>
-            <p>Достаточно 5–10 минут в день. Задания короткие и практичные.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Подойдёт новичкам?</summary>
-            <p>Да. Всё на простом языке, без сложных терминов и лишней теории.</p>
-          </details>
+        <div class="benefits__grid">
+          <div class="benefit">
+            <div class="benefit__icon">🎯</div>
+            <h3>Привычка создавать контент</h3>
+            <p>Стабильный график публикаций без перфекционизма и прокрастинации.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit__icon">📹</div>
+            <h3>Уверенность в съёмке и монтаже</h3>
+            <p>Поймёшь, что важно в кадре, и наладишь быстрый монтаж.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit__icon">⭐</div>
+            <h3>Личный бренд и экспертиза</h3>
+            <p>Расскажешь о себе и продукте, найдёшь тон и формат.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit__icon">📱</div>
+            <h3>Мини-портфолио за месяц</h3>
+            <p>31 пост — готовая витрина твоего роста и стиля.</p>
+          </div>
+        </div>
+        <div class="benefits__cta">
+          <a class="btn primary large" href="https://t.me/your_bot_here" target="_blank" rel="noopener">Запустить челлендж</a>
+        </div>
+      </section>
+
+      <!-- Theory Section -->
+      <section class="theory" id="theory">
+        <div class="section-head">
+          <div class="kicker">Теория и лайфхаки</div>
+          <h2>Лучшие практики от креаторов и Instagram</h2>
+        </div>
+        <div class="theory__grid">
+          <div class="tip-card">
+            <div class="tip-card__badge">Эксперименты</div>
+            <div class="tip-card__icon">🧪</div>
+            <h3>Trial Reels</h3>
+            <p>Пробуй новый стиль без риска для ленты: экспериментируй и делись, когда ролик заходит.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-card__badge">Вовлечённость</div>
+            <div class="tip-card__icon">💬</div>
+            <h3>Engagement</h3>
+            <p>Комментарии, сохранения и репосты — сильнейшие сигналы. Проси обратную связь, добавляй CTA.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-card__badge">Охваты</div>
+            <div class="tip-card__icon">🚀</div>
+            <h3>Reach</h3>
+            <p>Тренды, актуальное аудио и сильный хук в первые 3 секунды помогают попадать в рекомендации.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-card__badge">Форматы</div>
+            <div class="tip-card__icon">📄</div>
+            <h3>Карусели</h3>
+            <p>Гайды, чек-листы и разборы в слайдах люди чаще сохраняют — это растит охват и доверие.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-card__badge">Доход</div>
+            <div class="tip-card__icon">💰</div>
+            <h3>Монетизация</h3>
+            <p>Регулярность и качество открывают путь к партнёркам и интеграциям — начинай с дисциплины.</p>
+          </div>
+        </div>
+        <div class="theory__aside">
+          <div class="aside-card">
+            <h3>Совет</h3>
+            <p>Строй контент вокруг своей ниши и боли аудитории. Делай короче, яснее и конкретнее.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Motivation Section -->
+      <section class="quotes" id="motivation">
+        <div class="section-head">
+          <h2>Мотивация</h2>
+        </div>
+        <div class="quotes__list">
+          <blockquote class="quote">
+            <p>Не нужно быть идеальным. Нужно быть последовательным.</p>
+            <cite>— из чата челленджа</cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>Лучше сделано хорошо, чем идеально, но никогда.</p>
+            <cite>— правило 31 дней</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="final-cta" id="final-cta">
+        <div class="final-cta__content">
+          <h2>Готов к вызову?</h2>
+          <p>Начни прямо сейчас и создай 31 пост за месяц!</p>
+          <a class="btn primary large" href="https://t.me/your_bot_here" target="_blank" rel="noopener">Запустить челлендж</a>
+        </div>
+        <div class="final-cta__media">
+          <div class="cards-cascade">
+            <div class="card card--1"></div>
+            <div class="card card--2"></div>
+            <div class="card card--3"></div>
+          </div>
         </div>
       </section>
     </main>
@@ -156,15 +242,14 @@
       <div class="footer__inner">
         <div class="brand">IG Challenge</div>
         <div class="links">
-          <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener">Instagram</a>
-          <a href="#">Правила</a>
-          <a href="#">Конфиденциальность</a>
+          <a href="#how-it-works">Как это работает</a>
+          <a href="#theory">Теория и лайфхаки</a>
+          <a href="https://t.me/your_bot_here" target="_blank" rel="noopener">Начать</a>
         </div>
       </div>
-      <div class="copyright">© <span id="year"></span> IG Challenge</div>
+      <div class="copyright">© 2025. Все права защищены. by trinky.app</div>
     </footer>
 
     <script type="module" src="./script.js"></script>
   </body>
-  </html>
-
+</html>
