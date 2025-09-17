@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { slug: 'trial_reels', title: 'Тестовые рилсы', href: '/study/trial_reels', minDay: 4 },
     { slug: 'engagement', title: 'Вовлечённость', href: '/study/engagement', minDay: 7 },
     { slug: 'reach', title: 'Охват', href: '/study/reach', minDay: 14 },
-    { slug: 'monetization_ads', title: 'Монетизация и реклама', href: '/study/monetization_ads', minDay: 21 },
+    { slug: 'monetization', title: 'Монетизация', href: '/study/monetization', minDay: 21 },
+    { slug: 'partner_ads', title: 'Партнёрские интеграции', href: '/study/partner_ads', minDay: 21 },
     { slug: 'guidelines', title: 'Где искать знания', href: '/study/guidelines', minDay: 28 },
   ];
 

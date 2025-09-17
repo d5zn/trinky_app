@@ -9,12 +9,14 @@ app.use(express.json());
 // Middleware для обслуживания статических файлов
 app.use(express.static(path.join(__dirname)));
 
-// Главная страница теперь доступна по /main, а корень редиректит
-app.get('/main', (req, res) => {
+// Корень — заглушка Trinky
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'main.html'));
 });
-app.get('/', (req, res) => {
-  res.redirect(302, '/main');
+
+// Instagram Challenge доступен по /instagramboost
+app.get('/instagramboost', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Хост-бейз роутинг для поддомена instagram-boost.trinky.app
@@ -39,6 +41,18 @@ app.get('/study/creation', (req, res, next) => {
 app.get('/study/trial_reels', (req, res, next) => {
   if (!isBoostHost(req)) return next();
   return res.sendFile(path.join(__dirname, 'trial_reels.html'));
+});
+app.get('/study/engagement', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'engagement.html'));
+});
+app.get('/study/monetization', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'monetization.html'));
+});
+app.get('/study/partner_ads', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'partner_ads.html'));
 });
 
 // (Старые пути /instagramboost* удалены)
@@ -279,7 +293,8 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Main site available at: http://localhost:${PORT}/main`);
+  console.log(`Trinky stub available at: http://localhost:${PORT}/`);
+  console.log(`Instagram Challenge at: http://localhost:${PORT}/instagramboost`);
   console.log(`Boost landing at (host-bound): https://instagram-boost.trinky.app/`);
   console.log(`Study hub at (host-bound): https://instagram-boost.trinky.app/study`);
   console.log(`Creation at (host-bound): https://instagram-boost.trinky.app/study/creation`);
