@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="/creation.css" />
     <style>
       .topics { display: grid; gap: 12px; margin-top: 12px; }
-      .topic { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
-      .topic h3 { margin: 0; font-size: 18px; font-weight: 600; }
+      .topic { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+      .topic h3 { margin: 0; font-size: 18px; font-weight: 600; color: var(--text); }
       .topic .meta { color: var(--muted); font-size: 13px; }
       .topic.locked { opacity: .6; }
       .topic a { text-decoration: none; color: var(--text); }
       .badge-open { color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
       .badge-locked { color: #92400e; background: #fffbeb; border: 1px solid #fde68a; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+      
+      /* Dark theme badges */
+      [data-theme="dark"] .badge-open { color: #10b981; background: #064e3b; border-color: #065f46; }
+      [data-theme="dark"] .badge-locked { color: #f59e0b; background: #451a03; border-color: #92400e; }
     </style>
   </head>
   <body>
