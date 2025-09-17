@@ -53,3 +53,40 @@ input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px 
 @media (min-width: 720px) {
   .title { font-size: 32px; }
 }
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --panel: #2a2a2a;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --line: #333333;
+  --accent: #4a9eff;
+  --danger: #ff6b6b;
+}
+
+/* Theme and language switchers */
+.controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: var(--panel);
+  border-color: var(--muted);
+}

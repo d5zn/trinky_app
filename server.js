@@ -46,6 +46,10 @@ app.get('/study/engagement', (req, res, next) => {
   if (!isBoostHost(req)) return next();
   return res.sendFile(path.join(__dirname, 'engagement.html'));
 });
+app.get('/study/reach', (req, res, next) => {
+  if (!isBoostHost(req)) return next();
+  return res.sendFile(path.join(__dirname, 'reach.html'));
+});
 app.get('/study/monetization', (req, res, next) => {
   if (!isBoostHost(req)) return next();
   return res.sendFile(path.join(__dirname, 'monetization.html'));
